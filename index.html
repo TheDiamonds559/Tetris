@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tetris</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body>
+        <div id="container">
+            <div>
+                <div id="score"></div>
+                <div id="hScore"></div>
+                <canvas id="play" width="240" height="400"></canvas>
+            </div>
+            <div id="tips" style="display:block">
+                <ul>D or right arrow - Move the block right.</ul>
+                <ul>A or left arrow - Move the block left.</ul>
+                <ul>S or down arrow - Move the block down.</ul>
+                <ul>R - Rotate the block clockwise.</ul>
+                <ul>E - Rotate the block anti-clockwise.</ul>
+                <button id="bTips" onclick="tips()">Hide tips</button>
+            </div>
+            <script src="main.js"></script>
+        </div>
+    </body>
+</html>

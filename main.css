@@ -1,0 +1,16 @@
+body {
+    background: #202028;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+canvas {
+    border: solid 10px #fff;
+    height: 90vh;
+}
+
+#container{
+    grid-template-columns: 50% 50%;
+}
