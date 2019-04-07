@@ -6,18 +6,18 @@
     </head>
     <body>
         <div id="container">
-            <div>
+            <div id="box1">
+                <div id="start" onclick="sta()">Start?</div>
                 <div id="score"></div>
                 <div id="hScore"></div>
                 <canvas id="play" width="240" height="400"></canvas>
             </div>
-            <div id="tips" style="display:block">
+            <div id="tips">
                 <ul>D or right arrow - Move the block right.</ul>
                 <ul>A or left arrow - Move the block left.</ul>
                 <ul>S or down arrow - Move the block down.</ul>
                 <ul>R - Rotate the block clockwise.</ul>
                 <ul>E - Rotate the block anti-clockwise.</ul>
-                <button id="bTips" onclick="tips()">Hide tips</button>
             </div>
             <script src="main.js"></script>
         </div>

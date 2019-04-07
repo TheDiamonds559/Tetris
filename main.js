@@ -92,9 +92,16 @@ function createPiece(type){
 }
 
 function draw() {
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0, 0, play.width, play.height);
-
+    if(player.score < 500){
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, play.width, play.height);
+    } else if(player.score >= 500 && player.score < 1000){
+        ctx.fillStyle = '#ff99ff'
+        ctx.fillRect(0, 0, play.width, play.height);
+    } else if(player.score >= 1000){
+        ctx.fillStyle = '#1100ff';
+        ctx.fillRect(0, 0, play.width, play.height);
+    }
     drawM(arena, {x: 0, y: 0});
     drawM(player.matrix, player.pos);
 }
@@ -160,7 +167,7 @@ function merge(arena, player) {
 }
 
 function playerDrop(){
-    player.pos.y++;
+    player.pos.y ++;
     if(collide(arena, player)){
         player.pos.y--;
         merge(arena, player);
@@ -185,7 +192,8 @@ function playerReset() {
     player.pos.x = (arena[0].length / 2 | 0) -
                     (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
-        alert("Game Over!");
+        alert(`Game Over!
+Your score was: `  + player.score + "!");
         player.score = 0;
         updateScore();
         arena.forEach(row => row.fill(0));
@@ -230,17 +238,25 @@ function rotate(matrix, dir) {
 function updateScore(){
     document.getElementById('score').innerText = "Score: " + player.score;
     if (player.score > player.high){player.high = player.score;}
-    document.getElementById('hScore').innerText = "High Score: " + player.high; 
+    document.getElementById('hScore').innerText = "High Score: " + player.high;
 }
 
 document.addEventListener('keydown', event => {
     if (event.keyCode === 37 || event.keyCode === 65){playerMove(-1);}
     else if(event.keyCode === 39 || event.keyCode === 68){playerMove(1);}
-    else if(event.keyCode === 40 || event.keyCode === 83){playerDrop();}
+    else if(event.keyCode === 40 || event.keyCode === 83){
+        playerDrop();
+        player.score++;
+        updateScore();
+    }
     else if(event.keyCode === 82){playerRotate(-1);}
     else if(event.keyCode === 69){playerRotate(1);}
 })
 
-playerReset();
-updateScore();
-update();
+let sta = () =>{
+    playerReset();
+    updateScore();
+    update();
+    tips();
+    document.getElementById('start').style.display = 'none';
+}
